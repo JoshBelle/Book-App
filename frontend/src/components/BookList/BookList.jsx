@@ -1,4 +1,4 @@
-import { deleteBook, toggleFavourite } from '../../redux/books/actionCreators'
+import { deleteBook, toggleFavourite } from '../../redux/slices/bookSlice'
 import { useSelector, } from 'react-redux/es/hooks/useSelector'
 import { useDispatch } from 'react-redux'
 import { BsBookmarkStar } from "react-icons/bs";
