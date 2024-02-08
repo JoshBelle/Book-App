@@ -7,7 +7,7 @@ import './BookList.css'
 import { selectTitleFilter, selectOnlyFavouriteFilter, selectAuthorFilter } from '../../redux/slices/filterSlice';
 
 const BookList = () => {
-  const books = useSelector((state) => state.books)
+  const books = useSelector((state) => state.books.books)
   const titleFilter = useSelector(selectTitleFilter)
   const authorFilter = useSelector(selectAuthorFilter)
   const onlyFavouriteFilter = useSelector(selectOnlyFavouriteFilter)
