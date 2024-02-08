@@ -1,15 +1,20 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from "axios"
 import createBookWithId from '../../utils/createBookWithId'
+import { setError } from './errorSlice';
 
 const initialState = [];
 
 export const fetchBook = createAsyncThunk(
     'books/fetchBook',
-    async () => {
-        const res = await axios.get('http://localhost:4000/random-book')
-        console.log(res.data)
-        return res.data
+    async (url, thunkAPI) => {
+        try {
+            const res = await axios.get(url)
+            return res.data
+        } catch (error) {
+            thunkAPI.dispatch(setError('Network Error'))
+            throw error
+        }
     }
 )
 
@@ -26,7 +31,7 @@ const bookSlice = createSlice({
         toggleFavourite: (state, action) => {
             state.forEach((book) => {
                 if (book.id === action.payload) {
-                    book.isFavourite = !book.isFavourite; // Заменено с book.isFavorite на book.isFavourite
+                    book.isFavourite = !book.isFavourite; 
                 }
             });
         },
